@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page1</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="../jquery-2.1.4.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2 col-sm-2">
+            <img src="../images/page6-logo.png" style="width: 100%;height: 100%"/>
+        </div>
+        <div class="col-xs-10 col-sm-10" style="margin-top: 50px;margin-left: -50px">
+            <video src="../MP4/2a5ae47d38a17d025c5d62ae0769f01f.mp4" controls="controls">
+            </video>
+        </div>
+    </div>
+    <div class="row">
+        <p style="line-height: 50px">提问：食物为我们提供的营养成分有6类，分别是哪6类？都有些什么作用呢？蛋白质、糖类、脂肪、维生素、矿物质和水。
+        </p>
+        <img src="../images/page6-foot.png" style="width: 100%;height: 100%"/>
+    </div>
+</div>
+</body>
+<script>
+    function update(src){
+        document.getElementById("ppt").src = src;
+    }
+    addEventListener('message', e => {
+        // e.data为父页面发送的数据
+        document.getElementById("ppt").src = e.data;
+    })
+</script>
+</html>

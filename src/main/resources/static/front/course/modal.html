@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../semantic-ui/semantic.css">
+    <style>
+        .course-box{
+            background: #fff;
+            color: rgba(0,0,0,.87);
+            border-radius: 6px;
+            padding: 26px!important;
+            z-index: 999999;
+        }
+        .course-box-content{
+            background: #fff;
+            color: rgba(0,0,0,.87);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+        }
+        .box{
+            position: fixed;
+            z-index: 200;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: none;
+        }
+    </style>
+    <script src="../jquery-2.1.4.min.js"></script>
+    <script src="../semantic-ui/semantic.js"></script>
+
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <div>
+        <button class="ui button" id="open">打开model</button>
+    </div>
+    <div class="course-box" style="position: absolute;left:25%;top: 25%;width: 50%;height: 40%;background-color: white;display: none">
+        <div class="ui grid">
+            <div class="row">
+                <div class="ui grid">
+                    <div class="two wide column">
+                        <img src="../images/course/1.jpg" style="width: 80px;height: 80px">
+                    </div>
+                    <div class="two wide column" style="line-height: 20px">
+                        智能种植机
+                        16个课时
+                    </div>
+                </div>
+            </div>
+            <div class="row one column course-box-content">
+                <div class="column">
+                    <b style="color: black">课程介绍:</b>跟着老师一起学习Python编程语言，探索蔬菜生长相关的知识，最后运用所学知识完成一台简易智能种植机。
+                </div>
+                <div class="column">
+                    <b style="color: black;">教学目标:</b>了解食物中的营养成分，理解植物光合作用过程与植物生长所需条件，理解编程概念和简单编程程序，理解并掌握传感器技术和开源硬件的使用，掌握输入、处理、输出程序的编写方法，掌握并熟练使用基本语法、字符串等编写简单程序
+                </div>
+            </div>
+            <div class="row six column">
+                <div class="column right floated">
+                    <button class="ui button" style="background-color: cornflowerblue">进入</button>
+                </div>
+                <div class="column right floated" >
+                    <button class="ui button" id="close">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $("#open").click(function () {
+        $(".course-box").css("display","block");
+        $(".box").css("display","block");
+    });
+    $("#close").click(function () {
+        $(".course-box").css("display","none");
+        $(".box").css("display","none");
+    });
+</script>
+</html>

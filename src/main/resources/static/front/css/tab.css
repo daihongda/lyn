@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.cat-tab{
+    padding-left: 10px;
+    height: 40px;
+    border-bottom: 3px solid #00b0f0;
+}
+.tab{
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 10px;
+    float: left;
+}
+.tab.on{
+    background: #00b0f0;
+    color: #FFF;
+}
+.tabInfo{
+    display: none;
+}
+.tabInfo.active{
+    display: block;
+}
+.more{
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.more a{
+    text-decoration: none;
+    color: #666;
+}

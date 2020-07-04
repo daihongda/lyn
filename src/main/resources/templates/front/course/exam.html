@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/front/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/semantic-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/iconfonts/flaticon.css">
+    <style>
+        .inputBox {
+            margin-top: 5px !important;
+        }
+    </style>
+    <style>
+        .classH {
+            display: none;
+        }
+
+        .des {
+            display: none;
+        }
+
+        .tar {
+            display: none;
+        }
+
+        .img {
+            display: none;
+        }
+
+        /*.grid .column:not(.row):not(.grid):after {
+            background-color: rgba(86, 61, 124, .15);
+            box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
+            content: "";
+            display: block;
+            min-height: 50px;
+        }*/
+        .course-item {
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, .2), 0 3px 4px 0 rgba(0, 0, 0, .14), 0 1px 8px 0 rgba(0, 0, 0, .12);
+            padding: 12px;
+            font-size: 14px;
+            margin: 0 14px;
+        }
+
+        .course-list {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px 30px;
+            border-radius: 6px
+        }
+
+        .course-box {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 26px !important;
+            z-index: 999999;
+        }
+
+        .course-box-content {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .box {
+            position: fixed;
+            z-index: 200;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+    </style>
+</head>
+<body id="home">
+<div class="box">
+</div>
+<div class="course-box"
+     style="position: fixed;left:35%;top: 20%;width: 30%;background-color: white;display: none">
+    <div class="ui grid">
+        <div class="row" style="text-align: center">
+            <h2>mqtt连接配置</h2>
+        </div>
+        <div class="row twelve wide column centered course-box-content">
+                <div class="ui input">
+                    <input class="inputBox" type="text" placeholder="主机">
+                    <input class="inputBox" type="text" placeholder="端口号">
+                    <input class="inputBox" type="text" placeholder="浇水主题" value="DIY/TEST01" id="watering">
+                    <input class="inputBox" type="text" placeholder="湿度主题" value="DIY/TEST02" id="hum">
+                    <input class="inputBox" type="text" placeholder="温度主题" value="DIY/TEST03" id="tem">
+                    <input class="inputBox" type="text" placeholder="用户名">
+                    <input class="inputBox" type="text" placeholder="密码">
+                </div>
+        </div>
+        <div class="row three column centered">
+            <div class="column">
+                <button class="ui button" id="save" style="background-color: cornflowerblue">保存</button>
+            </div>
+            <div class="column">
+                <button class="ui button" id="close">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui inverted masthead centered segment">
+    <div class="ui page grid">
+        <div class="column">
+            <div class="container">
+                <div class="row" style="border: 1px solid;padding: 20px;text-align: center">
+                    <h1>科学观测平台</h1>
+                </div>
+                <div class="row" style="border: 1px solid;padding: 20px">
+                    <div class="col-xs-2 col-sm-2" style="text-align: center;height:220px;line-height: 220px">
+                        <h2>观测图片:</h2>
+                    </div>
+                    <div class="col-xs-2 col-sm-2" style="text-align: center;height:220px;line-height: 220px">
+                    </div>
+                    <div class="col-xs-4 col-sm-4">
+                        <img src="/static/front/images/timg.jpg" style="width: 100%;height: 100%">
+                    </div>
+                    <div class="col-xs-4 col-sm-4">
+                        <div class="ui input">
+                            <button class="ui primary button" id="configBtn">连接配置</button>
+                            <button class="ui primary button inputBox" id="wateringBtn">远程浇花</button>
+                            <button class="ui primary button inputBox" id="temBtn">同步温度</button>
+                            <button class="ui primary button inputBox" id="humBtn">同步湿度</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px; border: 1px  solid">
+                    <div class="col-xs-2 col-sm-2" style="text-align: center;height:220px;line-height: 220px">
+                        <h2>温度测量:</h2>
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <div id="termometer">
+                            <div id="temperature" style="height:0" data-value="0°C"></div>
+                            <div id="graduations"></div>
+                        </div>
+                        <div id="playground" style="display: none">
+                            <div id="range">
+                                <input id="minTemp" type="text" value="-20">
+                                <input type="range" min="-20" max="50" value="42">
+                                <input id="maxTemp" type="text" value="50">
+                            </div>
+                            <p id="unit">摄氏度 C°</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-sm-8">
+                        <div id="main" style="width: 100%;height:300px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px; border: 1px  solid">
+                    <div class="col-xs-2 col-sm-2" style="text-align: center;height:220px;line-height: 220px">
+                        <h2>湿度测量:</h2>
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <div id="termometer">
+                            <div id="temperature1" style="height:0" data-value="0°C"></div>
+                            <div id="graduations"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-8 col-sm-8">
+                        <div id="main1" style="width: 100%;height:300px;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="/static/front/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/static/front/js/echarts.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="/static/front/js/script.js"></script>
+<script src="/static/front/js/temperature/exam-2.js"></script>
+<script src="/static/front/js/temperature/exam-1.js"></script>
+<script>
+    $(function () {
+        $("#configBtn").click(function () {
+            $(".course-box").css("display", "block");
+            $(".box").css("display", "block");
+        });
+        $("#close").click(function () {
+            $(".course-box").css("display", "none");
+            $(".box").css("display", "none");
+        })
+        $("#temBtn").click(function () {
+
+        });
+        $("#humBtn").click(function () {
+
+        });
+        $("#wateringBtn").click(function () {
+
+        });
+    });
+</script>
+
+</body>
+
+</html>
+

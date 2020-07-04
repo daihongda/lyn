@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properities -->
+    <title>最新课程</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/front/semantic-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/iconfonts/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/css/bootstrap-treeview.css">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+<body id="home">
+<div class="ui inverted masthead centered segment">
+    <div class="ui page grid">
+        <div class="column">
+            <div class="ui secondary pointing menu">
+                <a class="logo item">
+                    startup
+                </a>
+                <a class="active item" href="/static/front/index.html">
+                    <i class="flaticon-home"></i> 主页
+                </a>
+                <a class="active item" href="/static/front/course/exam.html" target="_blank">
+                    <i class="flaticon-camera"></i> 观测平台
+                </a>
+                <a class="item">
+                    <i class="flaticon-mail"></i> 消息
+                </a>
+                <a class="item">
+                    <i class="flaticon-heart"></i> 朋友
+                </a>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui icon input">
+                            <input placeholder="Search..." type="text">
+                            <i class="flaticon-position link icon"></i>
+                        </div>
+                    </div>
+                    <a class="ui item" onclick="" id="signout">
+                        注销
+                    </a>
+                    <a class="ui item" style="display: none" id="signin" onclick="">
+                        登陆
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding: 20px">
+        <!--<div class="col-sm-4">
+            <h2>Input</h2>
+            <div class="form-group">
+                <label for="input-expand-node" class="sr-only">Search Tree:</label>
+                <input type="input" class="form-control" id="input-expand-node" placeholder="Identify node..." value="Parent 1">
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" class="checkbox" id="chk-expand-silent" value="false">
+                    Silent (No events)
+                </label>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-success expand-node" id="btn-expand-node">Expand Node</button>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="select-expand-node-levels">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-danger expand-node" id="btn-collapse-node">Collapse Node</button>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary expand-node" id="btn-toggle-expanded">Toggle Node</button>
+            </div>
+            <hr>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-success" id="btn-expand-all">Expand All</button>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" id="select-expand-all-levels">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" id="btn-collapse-all">Collapse All</button>
+        </div>-->
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="input-expand-node" class="sr-only">Search Tree:</label>
+                <input type="input" class="form-control" id="input-expand-node" placeholder="Identify node..."
+                       value="Parent 1">
+            </div>
+            <div id="treeview-expandible" class="" style="color:black"></div>
+        </div>
+        <div class="col-sm-8" style="padding: 0px 5px;height:550px">
+            <iframe id="frame" src="course/page1.html" width="100%" height="100%"   scrolling="yes" marginheight="0"
+                    marginwidth="0" style="cursor:pointer;"></iframe>
+            <iframe id="frame1" src="https://koudashijie.com/play/dungeon" width="100%" height="100%" style="display: none" scrolling="yes" marginheight="0"
+                    marginwidth="0"></iframe>
+            <iframe id="frame2" src="course/exam.html" width="100%" height="100%"  style="display: none"  scrolling="yes" marginheight="0"
+                    marginwidth="0"></iframe>
+            <iframe id="frame3" src="course/page6.html" width="100%" height="100%"  style="display: none"  scrolling="yes" marginheight="0"
+                    marginwidth="0"></iframe>
+        </div>
+    </div>
+    <div class="row" style="height:200px">
+
+    </div>
+</div>
+</div>
+<script src="jquery-2.1.4.min.js"></script>
+<script src="semantic-ui/semantic.js"></script>
+<script src="homepage.js"></script>
+<script src="js/bootstrap-treeview.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        $('.ui.card').popup();
+    });
+</script>
+<script>
+    $(function () {
+
+        var defaultData = [
+            {
+                text: '智能蔬菜种植课程',
+                href: '../images/course/1.jpg',
+                tags: ['0'],
+                nodes: [
+                    {
+                        text: '1 蔬菜的认识',
+                        href: '../images/course/2.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: '蔬菜百科1',
+                                href: '../images/course/3.jpg',
+                                tags: ['2']
+                            },
+                            {
+                                text: '蔬菜百科2',
+                                href: '../images/course/4.jpg',
+                                tags: ['2']
+                            },
+                            {
+                                text: '蔬菜百科3',
+                                href: '../images/course/5.jpg',
+                                tags: ['2']
+                            },
+                            {
+                                text: '蔬菜百科4',
+                                tags: ['2'],
+                                type: 3
+                            },
+                            {
+                                text: '植物光合作用',
+                                href: '../images/course/7.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '植物的身体',
+                                href: '../images/course/8.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '蔬菜的种植',
+                                href: '../images/course/9.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '大棚式蔬菜种植',
+                                href: '../images/course/10.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '家庭蔬菜种植',
+                                href: '../images/course/11.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '蔬菜生长所需条件1',
+                                href: '../images/course/12.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '蔬菜生长所需条件2',
+                                href: '../images/course/13.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '蔬菜水培',
+                                href: '../images/course/14.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '水培法',
+                                href: '../images/course/15.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我会种蔬菜1',
+                                href: '../images/course/16.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我会种蔬菜2',
+                                href: '../images/course/17.jpg',
+                                tags: ['0']
+                            }
+                        ]
+                    },
+                    {
+                        text: '2 智能蔬菜种植机',
+                        href: '../images/course/18.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: '交流分享',
+                                href: '../images/course/19.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '智能蔬菜种植机1',
+                                href: '../images/course/20.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '智能蔬菜种植机2',
+                                href: '../images/course/21.jpg',
+                                tags: ['0']
+                            },
+                            // {
+                            //     text: '智能蔬菜种植机观察窗口',
+                            //     type: 2,
+                            //     tags: ['2'],
+                            // },
+                            {
+                                text: '智能蔬菜种植机观察窗口',
+                                tags: ['2'],
+                                type: 2
+                            },
+                            {
+                                text: '奇妙的计算机',
+                                href: '../images/course/23.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '计算机是如何工作的呢？',
+                                href: '../images/course/24.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我会分析',
+                                href: '../images/course/25.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '分享交流',
+                                href: '../images/course/26.jpg',
+                                tags: ['0']
+                            }
+                        ]
+                    },
+                    {
+                        text: '3 蔬菜生长大揭秘',
+                        href: '../images/course/27.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: '科学探究1',
+                                href: '../images/course/28.jpg',
+                                tags: ['2']
+                            },
+                            {
+                                text: '科学探究2',
+                                href: '../images/course/29.jpg',
+                                tags: ['2']
+                            },
+                            {
+                                text: '分享交流',
+                                href: '../images/course/30.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我爱设计1',
+                                href: '../images/course/31.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我爱设计2',
+                                href: '../images/course/32.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '我爱设计3',
+                                href: '../images/course/33.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '家用蔬菜种植机',
+                                href: '../images/course/34.jpg',
+                                tags: ['0']
+                            }
+                        ]
+                    },
+                    {
+                        text: '4 人人都是编程小能手',
+                        href: '../images/course/35.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: 'python游戏',
+                                type: 1,
+                                tags: ['2'],
+                            },
+                            {
+                                text: '我会制作',
+                                href: '../images/course/37.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '虚谷号入门课程1',
+                                href: '../images/course/38.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '虚谷号入门课程2',
+                                href: '../images/course/39.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '虚谷号入门课程3',
+                                href: '../images/course/40.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '虚谷号入门课程4',
+                                href: '../images/course/41.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '虚谷号入门课程5',
+                                href: '../images/course/42.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python1',
+                                href: '../images/course/43.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python2',
+                                href: '../images/course/44.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python3',
+                                href: '../images/course/45.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python4',
+                                href: '../images/course/46.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python5',
+                                href: '../images/course/47.jpg',
+                                tags: ['0']
+                            },
+                            {
+                                text: '使用jupter学python6',
+                                href: '../images/course/48.jpg',
+                                tags: ['0']
+                            },
+
+                            /*{
+                                text: '观测平台',
+                                type: 2,
+                                tags: ['2'],
+                            },*/
+                        ]
+                    },
+                    {
+                        text: '5 神奇的物联网世界',
+                        href: '../images/course/49.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: '生活中的传感器',
+                                href: '../images/course/50.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '生活中的智能应用',
+                                href: '../images/course/51.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '认识传感器',
+                                href: '../images/course/52.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '虚谷号连接物联网服务器',
+                                href: '../images/course/53.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '虚谷号连接温度传感器',
+                                href: '../images/course/54.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '举一反三',
+                                href: '../images/course/55.jpg',
+                                tags: ['2'],
+                            }
+                        ]
+                    },
+                    {
+                        text: '6 人人都是工程师',
+                        href: '../images/course/56.jpg',
+                        tags: ['4'],
+                        nodes: [
+                            {
+                                text: '智能观察助手',
+                                href: '../images/course/57.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '自动浇水系统',
+                                href: '../images/course/58.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '分享交流',
+                                href: '../images/course/59.jpg',
+                                tags: ['2'],
+                            },
+                            {
+                                text: '小组评价单',
+                                href: '../images/course/60.jpg',
+                                tags: ['2'],
+                            }
+                        ]
+                    },
+                ]
+            },
+        ];
+
+        var alternateData = [
+            {
+                text: 'Parent 1',
+                tags: ['2'],
+                nodes: [
+                    {
+                        text: 'Child 1',
+                        tags: ['3'],
+                        nodes: [
+                            {
+                                text: 'Grandchild 1',
+                                tags: ['6']
+                            },
+                            {
+                                text: 'Grandchild 2',
+                                tags: ['3']
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Child 2',
+                        tags: ['3']
+                    }
+                ]
+            },
+            {
+                text: 'Parent 2',
+                tags: ['7']
+            },
+            {
+                text: 'Parent 3',
+                icon: 'glyphicon glyphicon-earphone',
+                href: '#demo',
+                tags: ['11']
+            },
+            {
+                text: 'Parent 4',
+                icon: 'glyphicon glyphicon-cloud-download',
+                href: '/demo.html',
+                tags: ['19'],
+                selected: true
+            },
+            {
+                text: 'Parent 5',
+                icon: 'glyphicon glyphicon-certificate',
+                color: 'pink',
+                backColor: 'red',
+                href: 'http://www.tesco.com',
+                tags: ['available', '0']
+            }
+        ];
+
+        var json = '[' +
+            '{' +
+            '"text": "Parent 1",' +
+            '"nodes": [' +
+            '{' +
+            '"text": "Child 1",' +
+            '"nodes": [' +
+            '{' +
+            '"text": "Grandchild 1"' +
+            '},' +
+            '{' +
+            '"text": "Grandchild 2"' +
+            '}' +
+            ']' +
+            '},' +
+            '{' +
+            '"text": "Child 2"' +
+            '}' +
+            ']' +
+            '},' +
+            '{' +
+            '"text": "Parent 2"' +
+            '},' +
+            '{' +
+            '"text": "Parent 3"' +
+            '},' +
+            '{' +
+            '"text": "Parent 4"' +
+            '},' +
+            '{' +
+            '"text": "Parent 5"' +
+            '}' +
+            ']';
+        var $expandibleTree = $('#treeview-expandible').treeview({
+            data: defaultData,
+            onNodeCollapsed: function (event, node) {
+                $('#expandible-output').prepend('<p>' + node.text + ' was collapsed</p>');
+            },
+            onNodeExpanded: function (event, node) {
+                $('#expandible-output').prepend('<p>' + node.text + ' was expanded</p>');
+            },
+            onNodeSelected: function (event, node) {
+                if(node.type == 1){
+                    $("#frame").css("display","none");
+                    $("#frame1").css("display","block");
+                    $("#frame2").css("display","none");
+                    $("#frame3").css("display","none");
+                }
+                else if(node.type == 2){
+                    $("#frame").css("display","none");
+                    $("#frame1").css("display","none");
+                    $("#frame2").css("display","block");
+                    $("#frame2").attr("src","course/exam.html");
+                    $("#frame3").css("display","none");
+                }
+                else if(node.type ==3){
+                    $("#frame").css("display","none");
+                    $("#frame1").css("display","none");
+                    $("#frame2").css("display","none");
+                    $("#frame3").css("display","block");
+                    //document.getElementById("frame").contentWindow.update(node.href);
+                    document.getElementById('frame').contentWindow.postMessage(node.href, '*')
+                    //$("#frame").attr("src", node.href);
+                }
+                else {
+                    $("#frame").css("display","block");
+                    $("#frame1").css("display","none");
+                    $("#frame2").css("display","none");
+                    $("#frame3").css("display","none");
+                    //document.getElementById("frame").contentWindow.update(node.href);
+                    document.getElementById('frame').contentWindow.postMessage(node.href, '*')
+                    //$("#frame").attr("src", node.href);
+                }
+            }
+        });
+
+        var findExpandibleNodess = function () {
+            return $expandibleTree.treeview('search', [$('#input-expand-node').val(), {
+                ignoreCase: false,
+                exactMatch: false
+            }]);
+        };
+        var expandibleNodes = findExpandibleNodess();
+
+        // Expand/collapse/toggle nodes
+        $('#input-expand-node').on('keyup', function (e) {
+            expandibleNodes = findExpandibleNodess();
+            $('.expand-node').prop('disabled', !(expandibleNodes.length >= 1));
+        });
+
+        $('#btn-expand-node.expand-node').on('click', function (e) {
+            var levels = $('#select-expand-node-levels').val();
+            $expandibleTree.treeview('expandNode', [expandibleNodes, {
+                levels: levels,
+                silent: $('#chk-expand-silent').is(':checked')
+            }]);
+        });
+
+        $('#btn-collapse-node.expand-node').on('click', function (e) {
+            $expandibleTree.treeview('collapseNode', [expandibleNodes, {silent: $('#chk-expand-silent').is(':checked')}]);
+        });
+
+        $('#btn-toggle-expanded.expand-node').on('click', function (e) {
+            $expandibleTree.treeview('toggleNodeExpanded', [expandibleNodes, {silent: $('#chk-expand-silent').is(':checked')}]);
+        });
+
+        // Expand/collapse all
+        $('#btn-expand-all').on('click', function (e) {
+            var levels = $('#select-expand-all-levels').val();
+            $expandibleTree.treeview('expandAll', {levels: levels, silent: $('#chk-expand-silent').is(':checked')});
+        });
+
+        $('#btn-collapse-all').on('click', function (e) {
+            $expandibleTree.treeview('collapseAll', {silent: $('#chk-expand-silent').is(':checked')});
+        });
+    })
+
+</script>
+<script src="js/login/custom.js"/>
+</body>
+
+</html>

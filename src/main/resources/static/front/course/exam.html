@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../semantic-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../homepage.css">
+    <link rel="stylesheet" type="text/css" href="../css/tab.css">
+    <style>
+        .classH {
+            display: none;
+        }
+
+        .des {
+            display: none;
+        }
+
+        .tar {
+            display: none;
+        }
+
+        .img {
+            display: none;
+        }
+
+        /*.grid .column:not(.row):not(.grid):after {
+            background-color: rgba(86, 61, 124, .15);
+            box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
+            content: "";
+            display: block;
+            min-height: 50px;
+        }*/
+        .course-item {
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, .2), 0 3px 4px 0 rgba(0, 0, 0, .14), 0 1px 8px 0 rgba(0, 0, 0, .12);
+            padding: 12px;
+            font-size: 14px;
+            margin: 0 14px;
+        }
+
+        .course-list {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px 30px;
+            border-radius: 6px
+        }
+
+        .course-box {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 26px !important;
+            z-index: 999999;
+        }
+
+        .course-box-content {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .box {
+            position: fixed;
+            z-index: 200;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+    </style>
+</head>
+<body id="home">
+<div class="box">
+</div>
+<div class="course-box" id="chart"
+     style="position: fixed;left:35%;top: 10%;width: 30%;background-color: white;display: none">
+    <div class="cat-tab">
+        <span class="tab on">实时</span>
+        <span class="tab">当天</span>
+        <span class="tab">近一周</span>
+        <span class="tab">近一月</span>
+        <div class="more">
+            <a id="closeBox" href="#"><i class="times icon"></i></a>
+        </div>
+    </div>
+    <!--实时数据 -->
+    <div id="main" class="tabInfo active" style="width: 400px;height:300px;">
+
+    </div>
+    <!--当天数据 -->
+    <div id="main1" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+    <!--本周数据 -->
+    <div id="main2" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+
+    <!--本月数据 -->
+    <div id="main3" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+</div>
+<div class="course-box" id="chart1"
+     style="position: fixed;left:35%;top: 10%;width: 30%;background-color: white;display: none">
+    <div class="cat-tab">
+        <span class="tab on">实时</span>
+        <span class="tab">当天</span>
+        <span class="tab">近一周</span>
+        <span class="tab">近一月</span>
+        <div class="more">
+            <a id="closeBox1" href="#"><i class="times icon"></i></a>
+        </div>
+    </div>
+    <!--实时数据 -->
+    <div id="main4" class="tabInfo active" style="width: 400px;height:300px;">
+
+    </div>
+    <!--当天数据 -->
+    <div id="main5" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+    <!--本周数据 -->
+    <div id="main6" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+
+    <!--本月数据 -->
+    <div id="main7" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+</div>
+
+<div class="course-box" id="chart2"
+     style="position: fixed;left:35%;top: 10%;width: 30%;background-color: white;display: none">
+    <div class="cat-tab">
+        <span class="tab on">实时</span>
+        <span class="tab">当天</span>
+        <span class="tab">近一周</span>
+        <span class="tab">近一月</span>
+        <div class="more">
+            <a id="closeBox2" href="#"><i class="times icon"></i></a>
+        </div>
+    </div>
+    <!--实时数据 -->
+    <div id="main8" class="tabInfo active" style="width: 400px;height:300px;">
+
+    </div>
+    <!--当天数据 -->
+    <div id="main9" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+    <!--本周数据 -->
+    <div id="main10" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+
+    <!--本月数据 -->
+    <div id="main11" class="tabInfo" style="width: 400px;height:300px">
+
+    </div>
+</div>
+
+
+
+
+<div class="course-box" id="config"
+     style="position: fixed;left:35%;top: 10%;width: 30%;background-color: white;display: none">
+    <div class="ui form test">
+        <p>WebGPIO连接配置</p>
+        <div class="field">
+            <label>虚谷号ip</label>
+            <input placeholder="ip" name="ip" value="192.168.43.179">
+        </div>
+        <div class="field" style="display: none">
+            <label>siot端口号</label>
+            <input placeholder="WebGPIO端口号" name="port" value="1883">
+        </div>
+        <div class="field" >
+            <label>用户名</label>
+            <input placeholder="WebGPIO端口号" name="username" value="scope">
+        </div>
+        <div class="field" >
+            <label>密码</label>
+            <input placeholder="WebGPIO端口号" name="password" value="scope">
+        </div>
+        <div class="field" >
+            <label>队列主题</label>
+            <input placeholder="WebGPIO端口号" name="topic" value="FPD/TEST02">
+        </div>
+        <div class="ui error message" id="error"></div>
+        <div class="ui primary submit button" id="save">保存</div>
+    </div>
+</div>
+<div class="course-box" id="config1"
+     style="position: fixed;left:35%;top: 10%;width: 30%;background-color: white;display: none;overflow: auto">
+    <div class="ui form test1">
+        <p>WebGPIO连接配置</p>
+        <div class="field">
+            <label>虚谷号ip</label>
+            <input placeholder="ip" name="ip" value="192.168.43.179">
+        </div>
+        <div class="field" style="display: none">
+            <label>WebGPIO端口号</label>
+            <input placeholder="WebGPIO端口号" name="port" value="1024">
+        </div>
+        <div class="field">
+            <label>温度计引脚</label>
+            <input placeholder="温度计引脚" name="pin1" value="A0" readonly>
+        </div>
+        <div class="field">
+            <label>湿度计引脚</label>
+            <input placeholder="湿度计引脚" name="pin2" value="A1"readonly>
+        </div>
+        <div class="field">
+            <label>浇水主题</label>
+            <input class="inputBox" type="text" placeholder="浇水主题" value="DIY/TEST01" id="watering" readonly><br/>
+        </div>
+        <div class="field">
+            <label>湿度主题</label>
+            <input class="inputBox" type="text" placeholder="湿度主题" value="DIY/TEST02" id="hum" readonly><br/>
+        </div>
+        <div class="field">
+            <label>温度主题</label>
+            <input class="inputBox" type="text" placeholder="温度主题" value="DIY/TEST03" id="tem" readonly><br/>
+        </div>
+        <!--<div class="field">
+            <label>用户名</label>
+            <input class="inputBox" type="text" placeholder="用户名"><br/>
+        </div>
+        <div class="field">
+            <label>密码</label>
+            <input class="inputBox" type="text" placeholder="密码"><br/>
+        </div>-->
+        <div class="ui error message" id="error1"></div>
+        <div class="ui primary submit button" id="save1">保存</div>
+    </div>
+</div>
+
+<div class="ui inverted masthead centered segment" style="display: none">
+    <div class="ui page grid">
+        <div class="column">
+            <div class="container">
+                <div class="row" style="border: 1px solid;padding: 20px;text-align: center">
+                    <h1>科学观测平台</h1>
+                </div>
+                <div class="row" style="border: 1px solid;padding: 20px">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="ui input" style="display: block">
+                            <!--<button class="ui primary button" id="configBtn2">连接配置</button>-->
+                            <button class="ui primary button inputBox" id="imgBtn">获取最新图片</button>
+                            <button class="ui primary button" id="configBtn3">WebGPIO</button>
+                            <button class="ui primary button inputBox" id="wateringBtn">远程浇花</button>
+                            <button class="ui primary button inputBox" id="temBtn">同步温度</button>
+                            <button class="ui primary button inputBox" id="humBtn">同步湿度</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px; border: 1px  solid">
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                    <div class="col-xs-2 col-sm-2">
+                        <img src="../images/timg.jpg" width="100%" height="100px">
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px; border: 1px  solid">
+
+                </div>
+                <div class="row" style="padding: 20px; border: 1px  solid">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main container">
+    <div class="row" style="padding: 20px;text-align: center">
+        <h1>科学观测平台</h1>
+    </div>
+    <div class="row">
+        <!--<video src="../MP4/2a5ae47d38a17d025c5d62ae0769f01f.mp4" controls="controls" style="width: 100%">
+        </video>-->
+    </div>
+    <div class="detail-title">实时数据</div>
+    <button class="ui primary button" id="configBtn1">WebGPIO</button><button class="ui primary button" id="configBtn">连接配置</button>
+    <div id="nowLast" class="row" style="margin: 0">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a id="temChart" href="#">
+                <div class="real-time-data modal-now clearfix" unit="℃" m-title="环境温度" code="Temperature"
+                     p-id="3rDy8G6ZAGQ">
+                    <div style="float: left;"><p style="font-size: 16px;color: #000;">环境温度</p>
+                        <div class="situation  clearfix middle"><i></i><i></i><i></i></div>
+                        <p style="font-size: 13px" code="Temperature"><span id="temInfo">15.17</span>℃</p></div>
+                    <img style="float: right;width: 54px;"
+                         src="/static/front/images/tem.png">
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a id="humChart" href="#">
+                <div class="real-time-data modal-now clearfix" unit="%" m-title="环境湿度" code="Hum" p-id="3rDy8G6ZAGQ">
+                    <div style="float: left;"><p style="font-size: 16px;color: #000;">环境湿度</p>
+                        <div class="situation  clearfix middle"><i></i><i></i><i></i></div>
+                        <p style="font-size: 13px" code="Hum"><span id="humInfo">66.47</span>%</p></div>
+                    <img style="float: right;width: 54px;"
+                         src="/static/front/images/hum.png">
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <a id="sunChart" href="#">
+                <div class="real-time-data modal-now clearfix" unit="%" m-title="光照强度" code="Hum" p-id="3rDy8G6ZAGQ">
+                    <div style="float: left;"><p style="font-size: 16px;color: #000;">光照强度</p>
+                        <div class="situation  clearfix middle"><i></i><i></i><i></i></div>
+                        <p style="font-size: 13px" code="Hum"><span id="sunInfo">40</span>lux</p></div>
+                    <img style="float: right;width: 54px;"
+                         src="/static/front/images/sun.jpg">
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="detail-title">设备控制</div>
+    <div id="devicesCtrl" class="row" style="margin: 0">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div style="position: relative" class="real-time-data clearfix" unit="undefined" m-title="红光" code="Red"
+                 p-id="3rDy8G6ZAGQ">
+                <img style="float: left;width: 54px;" src="/static/front/images/water.png">
+                <div style="float: right">
+                    <div style="font-size: 12px">浇水</div>
+                    <div class="switch-group clear">
+                        <input id="switch-btn" type="checkbox" name="switch"/>
+                        <label for="switch-btn"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+        </div>
+    </div>
+    <div class="clearfix">
+        <div class="detail-title pull-left">图像抓拍
+        </div>
+    </div>
+    <div style="text-align: center" id="row1">
+    </div>
+</div>
+
+
+</body>
+<script src="../jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../js/echarts.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="../semantic-ui/semantic.js"></script>
+<script src="../js/temperature/exam-2.js"></script>
+<script src="../js/template.js"></script>
+<script type="text/html" id="tpl">
+    <%for(var i = 0; i < list.length; i++) {%>
+    <div class="col-xs-2 col-sm-2">
+        <img src="<%:=list[i].value%>" width="100%" height="100px">
+        <span><%:=list[i].name%></span>
+    </div>
+    <%}%>
+</script>
+<script>
+    $(function () {
+        $('.ui.form')
+            .form({
+                fields: {
+                    ip: {
+                        identifier: 'ip',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: '虚谷号ip不能为空'
+                            }
+                        ]
+                    },
+                    port: {
+                        identifier: 'port',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'api端口号不能为空'
+                            }
+                        ]
+                    },
+                    pin1: {
+                        identifier: 'pin1',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: '温度计引脚不能为空'
+                            }
+                        ]
+                    },
+                    pin2: {
+                        identifier: 'pin2',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: '湿度计引脚不能为空'
+                            }
+                        ]
+                    },
+                    pin3: {
+                        identifier: 'pin3',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: '摄像头引脚不能为空'
+                            }
+                        ]
+                    },
+                }
+            })
+        ;
+
+        $("#configBtn").click(function () {
+            $("#config").css("display", "block");
+            $(".box").css("display", "block");
+        });
+        $("#configBtn1").click(function () {
+            $("#config1").css("display", "block");
+            $(".box").css("display", "block");
+        });
+        $("#close").click(function () {
+            $("#config").css("display", "none");
+            $(".box").css("display", "none");
+        })
+        $("#save").click(function () {
+            //开始订阅数据
+            var host = $('.ui.form.test').form('get field', "ip").val();
+            var port = $('.ui.form.test').form('get field', "port").val();
+            var username = $('.ui.form.test').form('get field', "username").val();
+            var password = $('.ui.form.test').form('get field', "password").val();
+            var topic = $('.ui.form.test').form('get field', "topic").val();;
+            $.get("http://47.100.12.233:8088/mqtt/subsribe", {"host": host, "port": port, "username": username,"password":password,"topic":topic}, function (d) {
+                console.log("success");
+            })
+            $("#config").css("display", "none");
+            $(".box").css("display", "none");
+        })
+        $("#save1").click(function () {
+            $(".ui.form").submit(function () {
+                var a = $("#error1").css("display");
+                if (a == "none") {
+                    $("#config1").css("display", "none");
+                    $(".box").css("display", "none");
+                }
+            });
+        })
+        $("#close1").click(function () {
+            $("#config1").css("display", "none");
+            $(".box").css("display", "none");
+        })
+        $("#imgBtn").click(function () {
+            $.get("http://47.100.12.233:8088/mqtt/getImg", {}, function (data) {
+                var src = "/static/front/images/observation/" + data.data.message;
+                $("#img").attr("src", src);
+            })
+        });
+        $("#temBtn").click(function () {
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin1 = $('.ui.form.test1').form('get field', "pin1").val();
+                getData(ip, port, pin1);
+            }
+        });
+        $("#humBtn").click(function () {
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin2 = $('.ui.form.test1').form('get field', "pin2").val();
+                getData1(ip, port, pin2, 'hum');
+            }
+        });
+        $("#wateringBtn").click(function () {
+
+        });
+        $("#switch-btn").click(function () {
+            var ip = $('.ui.form.test1').form('get field', "ip").val();
+            if ($("#switch-btn").get(0).checked) {
+                $.get("http://47.100.12.233:8088/mqtt/publish?port=1883&username=scope&password=scope&message=1", {
+                    "host": ip,
+                    "topic": "DIY/TEST01"
+                }, function (d) {
+                    console.log(d);
+                });
+            } else {
+                $.get("http://47.100.12.233:8088/mqtt/publish?port=1883&username=scope&password=scope&message=0", {
+                    "host": ip,
+                    "topic": "DIY/TEST01"
+                }, function (d) {
+                    console.log(d);
+                });
+            }
+        })
+
+        $("#closeBox").click(function () {
+            $("#chart").css("display", "none");
+            $(".box").css("display", "none");
+        });
+        $("#closeBox1").click(function () {
+            $("#chart1").css("display", "none");
+            $(".box").css("display", "none");
+        });
+        $("#closeBox2").click(function () {
+            $("#chart2").css("display", "none");
+            $(".box").css("display", "none");
+        });
+
+        $("#temChart").click(function () {
+            $("#chart").css("display", "block");
+            $(".box").css("display", "block");
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin1 = $('.ui.form.test1').form('get field', "pin1").val();
+                getData(ip, port, pin1, 'tem');
+            }
+        });
+        $("#humChart").click(function () {
+            $("#chart1").css("display", "block");
+            $(".box").css("display", "block");
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin2 = $('.ui.form.test1').form('get field', "pin2").val();
+                getData(ip, port, pin2, 'hum');
+            }
+        });
+        $("#sunChart").click(function () {
+            $("#chart2").css("display", "block");
+            $(".box").css("display", "block");
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin2 = $('.ui.form.test1').form('get field', "pin2").val();
+                getData(ip, port, pin2, 'sun');
+            }
+        });
+        var $tab_li = $('.cat-tab .tab');
+        $tab_li.click(function () {
+            $(this).addClass('on').siblings().removeClass('on');
+            var index = $tab_li.index(this);
+            $('.tabInfo').eq(index).addClass("active").siblings().removeClass("active");
+        });
+
+        function initEcharts() {
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var ip = $('.ui.form.test').form('get field', "ip").val();
+                var port = $('.ui.form.test').form('get field', "port").val();
+                ip = '127.0.0.1';
+                port = '1883';
+                getData1(ip, port, 'DIY/TEST01', 'day', 'tem');
+                getData1(ip, port, 'DIY/TEST01', 'week', 'tem');
+                getData1(ip, port, 'DIY/TEST01', 'month', 'tem');
+                getData1(ip, port, 'DIY/TEST01', 'day', 'hum');
+                getData1(ip, port, 'DIY/TEST01', 'week', 'hum');
+                getData1(ip, port, 'DIY/TEST01', 'month', 'hum');
+                getData1(ip, port, 'DIY/TEST01', 'day', 'sun');
+                getData1(ip, port, 'DIY/TEST01', 'week', 'sun');
+                getData1(ip, port, 'DIY/TEST01', 'month', 'sun');
+            }
+        }
+
+
+        initEcharts();
+
+        function initTemHum() {
+            $(".ui.form").submit();
+            if ($("#error1").css("display") == "block") {
+                $("#config1").css("display", "block");
+                $(".box").css("display", "block");
+            } else {
+                var host = $('.ui.form.test1').form('get field', "ip").val();
+                var port = $('.ui.form.test1').form('get field', "port").val();
+                var pin1 = $('.ui.form.test1').form('get field', "pin1").val();
+                var pin2 = $('.ui.form.test1').form('get field', "pin2").val();
+                var pin3 = '';
+                $.get("http://47.100.12.233:8088/mqtt/getData", {"host": host, "port": port, "pin": pin1}, function (d) {
+                    if (d.data.msg) {
+                        $("#temInfo").html(d.data.msg);
+                    }
+                })
+                $.get("http://47.100.12.233:8088/mqtt/getData", {"host": host, "port": port, "pin": pin2}, function (d) {
+                    if (d.data.msg) {
+                        $("#humInfo").html(d.data.msg);
+                    }
+                })
+                $.get("http://47.100.12.233:8088/mqtt/getData", {"host": host, "port": port, "pin": pin3}, function (d) {
+                    if (d.data.msg) {
+                        $("#sunInfo").html(d.data.msg);
+                    }
+                })
+            }
+
+        }
+
+        $.get("http://47.100.12.233:8088/mqtt/getImgList", {
+            "host": "127.0.0.1",
+            "port": 1883,
+            "topic": "DIY/TEST01",
+            "pageNum":1,
+            "pageSize":10
+        }, function (data) {
+            var imgList = data.list;
+            for (var img in imgList) {
+                img.value = "/static/front/images/observation/" + img.value;
+            }
+            var tpl = document.getElementById('tpl').innerHTML;
+            $("#row1").append(template(tpl, {"list": imgList, "id": 1}));
+        })
+        initTemHum();
+
+    });
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.test.mapper.base.MqttMessageMapper">
+  <resultMap id="BaseResultMap" type="com.fc.test.model.base.MqttMessage">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="SERVER_ID" jdbcType="BIGINT" property="serverId" />
+    <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+    <result column="QUEUE_NAME" jdbcType="VARCHAR" property="queueName" />
+    <result column="CREATED_BY" jdbcType="BIGINT" property="createdBy" />
+    <result column="CREATED_AT" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="MODIFIED_BY" jdbcType="BIGINT" property="modifiedBy" />
+    <result column="MODIFIED_AT" jdbcType="TIMESTAMP" property="modifiedAt" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.fc.test.dto.MessageDTO">
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SERVER_ID, MESSAGE, QUEUE_NAME, CREATED_BY, CREATED_AT, MODIFIED_BY, MODIFIED_AT, TYPE
+  </sql>
+  <sql id="Base_Where_Clause">
+    where t1.server_id  = t2.id
+    <if test="params.ip != null and params.ip != ''">
+      and t2.IP = #{params.ip,jdbcType=VARCHAR}
+    </if>
+    <if test="params.port != null and params.port != ''">
+      and t2.PORT = #{params.port,jdbcType=VARCHAR}
+    </if>
+    <if test="params.username != null and params.username != ''">
+      and t2.USERNAME = #{params.username,jdbcType=VARCHAR}
+    </if>
+    <if test="params.password != null and params.password != ''">
+      and t2.PASSWORD = #{params.password,jdbcType=VARCHAR}
+    </if>
+    <if test="params.queueName != null and params.queueName != ''">
+      and t1.QUEUE_NAME = #{params.queueName,jdbcType=VARCHAR}
+    </if>
+    <if test="params.createdAt != null">
+      and t1.CREATED_AT = #{params.createdAt,jdbcType=VARCHAR}
+    </if>
+    <if test="params.type != null and params.type != ''">
+      and t1.TYPE = #{params.type,jdbcType=VARCHAR}
+    </if>
+  </sql>
+  <select id="selectByParams" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    t1.*
+    from mqtt_message t1,mqtt_server t2
+    <include refid="Base_Where_Clause" />
+  </select>
+
+  <select id="selectByParamsGroupByHour" parameterType="java.util.Map" resultMap="BaseResultMap1">
+    select
+    DATE_FORMAT(t1.CREATED_AT,'%Y-%m-%d %H') name,CAST(avg(t1.MESSAGE) AS DECIMAL(10,2)) value
+    from mqtt_message t1,mqtt_server t2
+    where t1.server_id  = t2.id and t1.type = 1
+    <if test="params.ip != null and params.ip != ''">
+      and t2.IP = #{params.ip,jdbcType=VARCHAR}
+    </if>
+    <if test="params.port != null and params.port != ''">
+      and t2.PORT = #{params.port,jdbcType=VARCHAR}
+    </if>
+    <if test="params.queueName != null and params.queueName != ''">
+      and t1.QUEUE_NAME = #{params.queueName,jdbcType=VARCHAR}
+    </if>
+    <if test="params.beginTime != null and params.beginTime != ''">
+      and t1.CREATED_AT >= #{params.beginTime,jdbcType=VARCHAR}
+    </if>
+    <if test="params.endTime != null and params.endTime != ''">
+      and t1.CREATED_AT <![CDATA[<=]]> #{params.endTime,jdbcType=VARCHAR}
+    </if>
+    <if test="params.type != null and params.type != ''">
+      and t1.TYPE = #{params.type,jdbcType=VARCHAR}
+    </if>
+    group by DATE_FORMAT(t1.CREATED_AT,'%Y-%m-%d %H')
+  </select>
+
+  <select id="selectByParamsGroupByDay" parameterType="java.util.Map" resultMap="BaseResultMap1">
+    select
+    DATE_FORMAT(t1.CREATED_AT,'%Y-%m-%d') name,CAST(avg(t1.MESSAGE) AS DECIMAL(10,2)) value
+    from mqtt_message t1,mqtt_server t2
+    where t1.server_id  = t2.id and t1.type = 1
+    <if test="params.ip != null and params.ip != ''">
+      and t2.IP = #{params.ip,jdbcType=VARCHAR}
+    </if>
+    <if test="params.port != null and params.port != ''">
+      and t2.PORT = #{params.port,jdbcType=VARCHAR}
+    </if>
+    <if test="params.queueName != null and params.queueName != ''">
+      and t1.QUEUE_NAME = #{params.queueName,jdbcType=VARCHAR}
+    </if>
+    <if test="params.beginTime != null and params.beginTime != ''">
+      and t1.CREATED_AT >= #{params.beginTime,jdbcType=VARCHAR}
+    </if>
+    <if test="params.endTime != null and params.endTime != ''">
+      and t1.CREATED_AT <![CDATA[<=]]> #{params.endTime,jdbcType=VARCHAR}
+    </if>
+    <if test="params.type != null and params.type != ''">
+      and t1.TYPE = #{params.type,jdbcType=VARCHAR}
+    </if>
+    group by DATE_FORMAT(t1.CREATED_AT,'%Y-%m-%d')
+  </select>
+
+  <select id="selectNewImg" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    t1.*
+    from mqtt_message t1,mqtt_server t2
+    <include refid="Base_Where_Clause" />
+    order by t1.created_at desc limit 1
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mqtt_message
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mqtt_message
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.fc.test.model.base.MqttMessage">
+    insert into mqtt_message (ID, SERVER_ID, MESSAGE, 
+      QUEUE_NAME, CREATED_BY, CREATED_AT, 
+      MODIFIED_BY, MODIFIED_AT, TYPE)
+    values (#{id,jdbcType=BIGINT}, #{serverId,jdbcType=BIGINT}, #{message,jdbcType=VARCHAR}, 
+      #{queueName,jdbcType=VARCHAR}, #{createdBy,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=BIGINT}, #{modifiedAt,jdbcType=TIMESTAMP}), #{type,jdbcType=VARCHAR}
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.fc.test.model.base.MqttMessage">
+    update mqtt_message
+    set SERVER_ID = #{serverId,jdbcType=BIGINT},
+      MESSAGE = #{message,jdbcType=VARCHAR},
+      QUEUE_NAME = #{queueName,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      MODIFIED_BY = #{modifiedBy,jdbcType=BIGINT},
+      MODIFIED_AT = #{modifiedAt,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <!-- Site Properities -->
+    <title>Start UP - Creative Landing Page Template</title>
+    <link rel="stylesheet" type="text/css" href="/static/front/semantic-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/homepage.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/iconfonts/flaticon.css">
+    <link rel="stylesheet" type="text/css" href="/static/front/css/style1.css">
+    <style>
+        .classH {
+            display: none;
+        }
+
+        .des {
+            display: none;
+        }
+
+        .tar {
+            display: none;
+        }
+
+        .img {
+            display: none;
+        }
+
+        /*.grid .column:not(.row):not(.grid):after {
+            background-color: rgba(86, 61, 124, .15);
+            box-shadow: 0px 0px 0px 1px rgba(86, 61, 124, 0.2) inset;
+            content: "";
+            display: block;
+            min-height: 50px;
+        }*/
+        .course-item {
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 3px 3px -2px rgba(0, 0, 0, .2), 0 3px 4px 0 rgba(0, 0, 0, .14), 0 1px 8px 0 rgba(0, 0, 0, .12);
+            padding: 12px;
+            font-size: 14px;
+            margin: 0 14px;
+        }
+
+        .course-list {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px 30px;
+            border-radius: 6px
+        }
+
+        .course-box {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 26px !important;
+            z-index: 999999;
+        }
+
+        .course-box-content {
+            background: #fff;
+            color: rgba(0, 0, 0, .87);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 14px;
+        }
+
+        .box {
+            position: fixed;
+            z-index: 200;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+    </style>
+    <script src="/static/front/jquery-2.1.4.min.js"></script>
+    <script src="/static/front/js/login/jquery.cookie.js"></script>
+    <script src="/static/front/semantic-ui/semantic.js"></script>
+    <script src="/static/front/homepage.js"></script>
+    <script src="/static/front/js/template.js"></script>
+</head>
+<body id="home">
+<div class="box">
+
+</div>
+<div class="course-box"
+     style="position: fixed;left:25%;top: 25%;width: 50%;background-color: white;display: none">
+    <div class="ui grid">
+        <div class="row">
+            <div class="ui grid">
+                <div class="two wide column">
+                    <img id="course-img" src="/static/front/images/course/1.jpg" style="width: 80px;height: 80px">
+                </div>
+                <div class="eight wide column" style="margin-top: 20px">
+                    <b style="line-height: 0px" id="course-name">智能种植机</b><br>
+                    <p style="line-height: 10px" id="course-classHour">16个课时</p>
+                </div>
+            </div>
+        </div>
+        <div class="row one column course-box-content">
+            <div class="column">
+                <b style="color: black">课程介绍:</b>
+                <p id="course-description">跟着老师一起学习Python编程语言，探索蔬菜生长相关的知识，最后运用所学知识完成一台简易智能种植机。</p>
+            </div>
+            <div class="column">
+                <b style="color: black;">教学目标:</b>
+                <p id="course-target">了解食物中的营养成分，理解植物光合作用过程与植物生长所需条件，理解编程概念和简单编程程序，
+                    理解并掌握传感器技术和开源硬件的使用，掌握输入、处理、输出程序的编写方法，掌握并熟练使用基本语法、字符串等编写简单程序</p>
+            </div>
+        </div>
+        <div class="row five column">
+            <div class="column left floated">
+                <button class="ui button" id="enter" style="background-color: cornflowerblue">进入</button>
+            </div>
+            <div class="column left floated">
+                <button class="ui button" id="close">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui inverted masthead centered segment">
+    <div class="ui page grid">
+        <div class="column">
+            <div class="ui secondary pointing menu">
+                <a class="logo item">
+                    startup
+                </a>
+                <a class="active item" href="/front/index.html">
+                    <i class="flaticon-home"></i> 主页
+                </a>
+                <a class="item">
+                    <i class="flaticon-mail"></i> 消息
+                </a>
+                <a class="item">
+                    <i class="flaticon-heart"></i> 朋友
+                </a>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui icon input">
+                            <input placeholder="Search..." type="text">
+                            <i class="flaticon-position link icon"></i>
+                        </div>
+                    </div>
+                    <a class="ui item" onclick="" id="signout">
+                        注销
+                    </a>
+                    <a class="ui item" style="display: none" id="signin" onclick="">
+                        登陆
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui inverted centered header">
+        <h1 class="ui inverted centered header">
+            智能STEM课程学习平台
+        </h1>
+        <img src="/static/front/images/banner4.jpg" width="100%" height="400px"/>
+    </div>
+    <div class="ui page grid">
+        <div class="column">
+            <div class="ui hidden transition information">
+                <div class="ui three column grid centerted image" style="margin:20px 0px ">
+                    <div class="column">
+                        <img src="/static/front/images/banner1.jpg"/>
+                    </div>
+                    <div class="column">
+                        <img src="/static/front/images/banner2.jpg"/>
+                    </div>
+                    <div class="column">
+                        <img src="/static/front/images/banner3.jpg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ui vertical feature segment">
+    <div class="ui centered page grid">
+        <div class="fourteen wide column">
+            <div class="ui three column center aligned stackable divided grid">
+                <div class="column column-feature">
+                    <div class="ui icon header">
+                        <i class="flaticon-connecting icon"></i>
+                        教学课程
+                    </div>
+                    <p>你可以在这里学到最新的stem课程</p>
+                    <p>
+                        <a class="ui button" href="#newCourse">
+                            开始学习
+                        </a>
+                    </p>
+                </div>
+                <div class="column column-feature">
+                    <div class="ui icon header">
+                        <i class="flaticon-calendar icon"></i>
+                        师资力量
+                    </div>
+                    <p>我们有非常完备的教师团队</p>
+                    <p>
+                        <a class="ui green right labeled icon button" href="#">
+                            查看
+                            <i class="right flaticon-move icon"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="column column-feature">
+                    <div class="ui icon header">
+                        <i class="flaticon-speech icon"></i>
+                        交流分享
+                    </div>
+                    <p>你甚至可以拥有自己的课程</p>
+                    <p>
+                        <a class="ui button" href="#">
+                            申请成为教师
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="ui recent-works vertical segment">
+    <div class="ui very relaxed stackable centered page grid">
+        <div class="row" id="newCourse">
+            <div class="eight wide centered column">
+                <h1 class="center aligned ui inverted header">
+                    最新的课程
+                </h1>
+                <div class="ui horizontal divider"><i class="white flaticon-camera icon"></i></div>
+                <p class="ui centered lead">赶紧来看看吧</p>
+            </div>
+        </div>
+        <div class="sixteen wide column">
+            <div class="ui  aligned stackable divided grid centered " >
+                <div class="four wide column" id="left" style="background-color: #1c8ca8;min-height: 500px" >
+                    <div class="ui one column grid">
+                        <div class="column">
+                            <div class="ui icon input">
+                                <input placeholder="Search..." type="text">
+                                <i class="flaticon-position link icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="twelve wide column" id="right" style="background-color: #f5f5f5;min-height: 500px">
+                    <dic class="row">
+                        <div class="sixteen column wide center aligned"
+                             style="background-color: rgba(0,0,0,.04);padding: 10px 30px;">
+                            <p style="color: black;line-height: 10px;font-size: medium">下面的课程将是你想要的——————————</p>
+                        </div>
+                    </dic>
+                    <div class="row  course-list">
+                        <div class="ui grid" id="list1">
+                            <div class="four wide column  ">
+                                7年级<br>3个课程
+                            </div>
+                            <div class="twelve wide column  ">
+                                <div class="ui seven column grid" id="imgList1">
+
+                                </div>
+                            </div>
+                            <div class="four column row" id="row1" style="display: none">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row course-list">
+                        <div class="ui grid">
+                            <div class="four wide column  ">
+                                8年级<br>4个课程
+                            </div>
+                            <div class="twelve wide column  ">
+                                <div class="ui seven column grid" id="imgList2">
+                                </div>
+                            </div>
+                            <div class="four column row" id="row2" style="display: none">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=""></div>
+    </div>
+</div>
+
+
+<!--
+<div class="ui vertical segment">
+    <div class="ui stackable center aligned page grid">
+        <div class="row">
+            <div class="eight wide column">
+                <h1 class="ui header">
+                    Our Clients
+                </h1>
+                <div class="ui horizontal divider"><i class="flaticon-settings icon"></i></div>
+                <p class="ui centered lead">
+                    Many Companies Rely on Our Cat Knowledge
+                </p>
+                <br/>
+            </div>
+        </div>
+        <div class="four column logo row">
+            <div class="column">
+                <div class="ui shape">
+                    <div class="sides">
+                        <div class="active side">
+                            <i class="huge flaticon-facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-pinterest icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-more icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui shape">
+                    <div class="sides">
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-more icon"></i>
+                        </div>
+                        <div class="active side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="ui shape">
+                    <div class="sides">
+                        <div class="active side">
+                            <i class="huge flaticon-facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-pinterest icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-more icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui shape">
+                    <div class="sides">
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-more icon"></i>
+                        </div>
+                        <div class="active side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-facebook icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-google icon"></i>
+                        </div>
+                        <div class="side">
+                            <i class="huge flaticon-twitter icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui inverted footer vertical segment center">
+    <div class="ui stackable center aligned page grid">
+        <div class="four column row">
+
+            <div class="column">
+                <h5 class="ui inverted header">Courses</h5>
+                <div class="ui inverted link list">
+                    <a class="item">Registration</a>
+                    <a class="item">Course Calendar</a>
+                    <a class="item">Professors</a>
+                </div>
+            </div>
+            <div class="column">
+                <h5 class="ui inverted header">Library</h5>
+                <div class="ui inverted link list">
+                    <a class="item">A-Z</a>
+                    <a class="item">Most Popular</a>
+                    <a class="item">Recently Changed</a>
+                </div>
+            </div>
+            <div class="column">
+                <h5 class="ui inverted header">Community</h5>
+                <div class="ui inverted link list">
+                    <a class="item">BBS</a>
+                    <a class="item">Careers</a>
+                    <a class="item">Privacy Policy</a>
+                </div>
+            </div>
+
+            <div class="column">
+                <h5 class="ui inverted header">Designed By</h5>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+-->
+</body>
+<script type="text/html" id="tpl">
+    <%for(var i = 0; i < list.length; i++) {%>
+    <div class="column course-item left floated" style="text-align: center">
+        <img src="<%:=list[i].image%>" style="width: 180px;height: 80px">
+        <b class="name"><%:=list[i].name%></b>
+        <b class="des"><%:=list[i].description%></b>
+        <b class="tar"><%:=list[i].target%></b>
+        <b class="classH"><%:=list[i].classHour%></b>
+        <b class="img"><%:=list[i].image%></b>
+    </div>
+    <%}%>
+</script>
+<script type="text/html" id="tpl1">
+    <%for(var i = 0; i < list.length; i++) {%>
+    <div class="column">
+        <img src="<%:=list[i].image%>" style="width: 40px;height: 40px">
+    </div>
+    <%}%>
+    <div class="column right floated">
+        <i class="angle down icon ttt" id="<%:=id%>"
+           style="line-height: 50px;cursor: pointer"></i>
+    </div>
+</script>
+<script>
+    //监听div大小变化
+    (function ($, h, c) {
+        var a = $([]),
+            e = $.resize = $.extend($.resize, {}),
+            i,
+            k = "setTimeout",
+            j = "resize",
+            d = j + "-special-event",
+            b = "delay",
+            f = "throttleWindow";
+        e[b] = 250;
+        e[f] = true;
+        $.event.special[j] = {
+            setup: function () {
+                if (!e[f] && this[k]) {
+                    return false;
+                }
+                var l = $(this);
+                a = a.add(l);
+                $.data(this, d, {
+                    w: l.width(),
+                    h: l.height()
+                });
+                if (a.length === 1) {
+                    g();
+                }
+            },
+            teardown: function () {
+                if (!e[f] && this[k]) {
+                    return false;
+                }
+                var l = $(this);
+                a = a.not(l);
+                l.removeData(d);
+                if (!a.length) {
+                    clearTimeout(i);
+                }
+            },
+            add: function (l) {
+                if (!e[f] && this[k]) {
+                    return false;
+                }
+                var n;
+
+                function m(s, o, p) {
+                    var q = $(this),
+                        r = $.data(this, d);
+                    r.w = o !== c ? o : q.width();
+                    r.h = p !== c ? p : q.height();
+                    n.apply(this, arguments);
+                }
+
+                if ($.isFunction(l)) {
+                    n = l;
+                    return m;
+                } else {
+                    n = l.handler;
+                    l.handler = m;
+                }
+            }
+        };
+
+        function g() {
+            i = h[k](function () {
+                    a.each(function () {
+                        var n = $(this),
+                            m = n.width(),
+                            l = n.height(),
+                            o = $.data(this, d);
+                        if (m !== o.w || l !== o.h) {
+                            n.trigger(j, [o.w = m, o.h = l]);
+                        }
+                    });
+                    g();
+                },
+                e[b]);
+        }
+    })(jQuery, this);
+    $(function () {
+        $('.ui.card').popup();
+        var isSignin = $.cookie("isSignin");
+        if (isSignin && isSignin === "true") {
+            $("#signin").css("display", "none");
+            $("#signout").css("display", "inline");
+        } else {
+            $("#signin").css("display", "inline");
+            $("#signout").css("display", "none");
+        }
+        $("#signin").click(function () {
+            window.location = "signin.html";
+        })
+        $("#signout").click(function () {
+            $.cookie("isSignin", false, {expires: 1});
+            window.location = "index.html";
+        })
+        $("#left").css("height", $("#right").css("height"));
+        $("#right").resize(function () {
+            var h = $("#right").css("height");
+            $("#left").css("height", h);
+        })
+        $("#close").click(function () {
+            $(".course-box").css("display", "none");
+            $(".box").css("display", "none");
+        });
+        $("#enter").click(function () {
+            window.location = "course.html";
+        });
+        var data1 = [
+            {
+                "name": "智能种植机",
+                "image": "images/course/1.jpg",
+                "classHour": 16,
+                "description": "跟着老师一起学习Python编程语言，探索蔬菜生长相关的知识，最后运用所学知识完成一台简易智能种植机。",
+                "target": "了解食物中的营养成分，理解植物光合作用过程与植物生长所需条件，理解编程概念和简单编程程序，理解并掌握传感器技术和开源硬件的使用，" +
+                    "掌握输入、处理、输出程序的编写方法，掌握并熟练使用基本语法、字符串等编写简单程序"
+            },
+            {
+                "name": "热力学：了解热和温度",
+                "image": "images/item/1-1.png",
+                "classHour": 16,
+                "description": "学生使用交互式虚拟模型探索温度和热能传递的概念，以研究不同材料中的传导率和热平衡。",
+                "target": "学生使用交互式虚拟模型探索温度和热能传递的概念，以研究不同材料中的传导率和热平衡。"
+            },
+            {
+                "name": "热力学挑战",
+                "image": "images/item/1-2.png",
+                "classHour": 16,
+                "description": "使用交互式实验模型，学生可以收集和分析图形数据，以确定用于保温冷或热饮料的最佳材料。",
+                "target": "使用交互式实验模型，学生可以收集和分析图形数据，以确定用于保温冷或热饮料的最佳材料。"
+            }
+        ];
+        var data2 = [
+            {
+                "name": "光合作用，细胞呼吸与生态系统",
+                "image": "images/item/2-1.png",
+                "classHour": 14,
+                "description": "在这个4课系列中，学生将Biosphere 2作为锚点现象，使用现实世界的数据了解支持动植物生命的因素。学生学习并模拟光合作用和细胞呼吸以及生态系统的过程。" +
+                    "他们探索并解释了与将狼重新引入黄石国家公园有关的数据，并提出了恢复计划，以增加公园中的海狸种群。",
+                "target": "在这个4课系列中，学生将Biosphere 2作为锚点现象，使用现实世界的数据了解支持动植物生命的因素。学生学习并模拟光合作用和细胞呼吸以及生态系统的过程。" +
+                    "他们探索并解释了与将狼重新引入黄石国家公园有关的数据，并提出了恢复计划，以增加公园中的海狸种群。"
+            },
+            {
+                "name": "化学反应和替代燃料：做出改变",
+                "image": "images/item/2-2.png",
+                "classHour": 15,
+                "description": "学生使用交互式虚拟模型探索温度和热能传递的概念，以研究不同材料中的传导率和热平衡。",
+                "target": "学生使用动态图，计算机模型和绘图研究汽油燃烧的化学反应。然后，使用虚拟实验，学生探索温室效应以及汽油燃烧和温室气体排放如何影响温室效应。最后，学生使用虚拟实验研究替代燃料解决方案及其对温室气体排放，全球温度和生产成本的影响。在整个项目中，学生将使用模型，图表和实验中的证据，向总统写一封证据丰富的信，内容涉及汽油燃烧如何影响全球气候并提出解决方案。"
+            },
+            {
+                "name": "板块构造：地震，火山和山脉是如何形成的？",
+                "image": "images/item/2-3.png",
+                "classHour": 12,
+                "description": "学习板块构造相关知识。",
+                "target": "学生首先分析板块边界，地震学，地形和火山图进行调查，为什么西海岸会发生如此多的地震，山脉和火山？" +
+                    "然后，学生使用图形和动态可视化来探索板块类型的密度以及这如何影响边界处的相互作用。" +
+                    "然后，学生使用视频和图表来探索对流及其在板块运动中的作用。在整个项目中，学生使用自动化的自适应指导来撰写和修改短文。。"
+            },
+            {
+                "name": "我们如何回收旧轮胎？",
+                "image": "images/item/2-4.png",
+                "classHour": 10,
+                "description": "学习材料回收。",
+                "target": "学生将根据化学键研究回收不同类型材料的方法和挑战。材料包括橡胶，玻璃，塑料和陶瓷。学生使用此信息来推荐如何回收废旧轮胎。"
+            },
+        ];
+
+        var tpl = document.getElementById('tpl').innerHTML;
+        $("#row1").append(template(tpl, {"list": data1, "id": 1}));
+        $("#row2").append(template(tpl, {"list": data2, "id": 2}));
+        var tpl1 = document.getElementById('tpl1').innerHTML;
+        $("#imgList1").append(template(tpl1, {"list": data1, "id": 1}))
+        $("#imgList2").append(template(tpl1, {"list": data2, "id": 2}))
+        $(".ttt").click(function (event) {
+            var id = $(event.target).attr("id");
+            $("#row" + id).slideToggle();
+        });
+        $(".course-item").click(function () {
+            var des = this.getElementsByClassName("des")[0].innerHTML;
+            var tar = this.getElementsByClassName("tar")[0].innerHTML;
+            var classH = this.getElementsByClassName("classH")[0].innerHTML;
+            var img = this.getElementsByClassName("img")[0].innerHTML;
+            var name = this.getElementsByClassName("name")[0].innerHTML;
+            $("#course-description").html(des);
+            $("#course-target").html(tar);
+            $("#course-classHour").html(classH + "个课时");
+            $("#course-name").html(name);
+            $("#course-img").attr("src", img);
+
+            $(".course-box").css("display", "block");
+            $(".box").css("display", "block");
+        });
+    });
+</script>
+
+</html>
